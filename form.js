@@ -1,4 +1,5 @@
 import { database } from "./main.js";
+import { ref, set } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
 const nameForm = document.querySelector("form");
 const nameInput = document.querySelector('form input[type="text"]');
