@@ -1,4 +1,4 @@
-import { database } from "./main";
+import { database } from "./main.js";
 
 const nameForm = document.querySelector("form");
 const nameInput = document.querySelector('form input[type="text"]');
