@@ -109,16 +109,25 @@
           progressBarFull.style.width = 100 * progress + "%";
         }).then((unityInstance) => {
           loadingBar.style.display = "none";
-          const softwareRef = ref(database, "software");
 
-          let dbEnabled = false;
+          const softwareRef = ref(database, "software");
+          let dbSoftwareEnabled = false;
           onValue(softwareRef, (snapshot) => {
-            if (!dbEnabled) {
-              dbEnabled = true;
+            if (!dbSoftwareEnabled) {
+              dbSoftwareEnabled = true;
               return;
             }
             unityInstance.SendMessage("IconSpawners", "SpawnIcon", parseInt(snapshot.val().split(" ")[0]));
-            console.log(snapshot.val())
+          })
+
+          const nameRef = ref(database, "name");
+          let dbNameEnabled = false;
+          onValue(nameRef, (snapshot) => {
+            if (!dbNameEnabled) {
+              dbNameEnabled = true;
+              return;
+            }
+            unityInstance.SendMessage("IconSpawners", "SpawnName", snapshot.val());
           })
 
           fullscreenButton.onclick = () => {
