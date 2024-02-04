@@ -117,7 +117,7 @@
               dbEnabled = true;
               return;
             }
-            unityInstance.SendMessage("IconSpawners", "SpawnIcon", parseInt(snapshot.val()));
+            unityInstance.SendMessage("IconSpawners", "SpawnIcon", parseInt(snapshot.val().split(" ")[0]));
             console.log(snapshot.val())
           })
 

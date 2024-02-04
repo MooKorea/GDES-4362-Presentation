@@ -35,7 +35,7 @@ nameForm.addEventListener("submit", (e) => {
       e.style.opacity = "0.5";
       e.style.pointerEvents = "none";
       const index = e.getAttribute("data-index");
-      set(ref(database, "software"), index);
+      set(ref(database, "software"), `${index} ${Date.now()}`);
     });
   }
 });
