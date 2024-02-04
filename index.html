@@ -23,7 +23,10 @@
         <div id="unity-build-title">GDES 4362 Presentation</div>
       </div>
     </div>
-    <script>
+    <script type="module">
+      import { database } from "./main.js"
+      import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+
       var container = document.querySelector("#unity-container");
       var canvas = document.querySelector("#unity-canvas");
       var loadingBar = document.querySelector("#unity-loading-bar");
@@ -106,6 +109,18 @@
           progressBarFull.style.width = 100 * progress + "%";
         }).then((unityInstance) => {
           loadingBar.style.display = "none";
+          const softwareRef = ref(database, "software");
+
+          let dbEnabled = false;
+          onValue(softwareRef, (snapshot) => {
+            if (!dbEnabled) {
+              dbEnabled = true;
+              return;
+            }
+            unityInstance.SendMessage("Icon Spawners", "SpawnIcon", snapshot.val());
+            console.log(snapshot.val())
+          })
+
           fullscreenButton.onclick = () => {
             unityInstance.SetFullscreen(1);
           };
@@ -114,6 +129,9 @@
         });
       };
       document.body.appendChild(script);
+
+
+
     </script>
   </body>
 </html>
