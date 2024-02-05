@@ -146,9 +146,9 @@
             }
             const direction = parseInt(snapshot.val().split(" ")[0])
             if (direction === 0) {
-              unityInstance.SendMessage("vCams", "OnPreviousSlide");
+              unityInstance.SendMessage("VCams", "OnPreviousSlide");
             } else {
-              unityInstance.SendMessage("vCams", "OnNextSlide");
+              unityInstance.SendMessage("VCams", "OnNextSlide");
             }
           })
 
@@ -159,7 +159,7 @@
               dbDebugEnabled = true;
               return;
             }
-            unityInstance.SendMessage("vCams", "OnToggleDebug");
+            unityInstance.SendMessage("VCams", "OnToggleDebug");
           })
 
           fullscreenButton.onclick = () => {
