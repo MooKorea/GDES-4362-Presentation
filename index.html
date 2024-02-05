@@ -137,6 +137,31 @@
             unityInstance.SendMessage("IconSpawners", "SpawnName", snapshot.val());
           })
 
+          const slideDirectionRef = ref(database, "slideDirection")
+          let dbSlideDirectionEnabled = false;
+          onValue(slideDirectionRef, (snapshot) => {
+            if (!dbSlideDirectionEnabled) {
+              dbSlideDirectionEnabled = true;
+              return;
+            }
+            const direction = parseInt(snapshot.val().split(" ")[0])
+            if (direction === 0) {
+              unityInstance.SendMessage("vCams", "OnPreviousSlide");
+            } else {
+              unityInstance.SendMessage("vCams", "OnNextSlide");
+            }
+          })
+
+          const debugRef = ref(database, "debugEnable")
+          let dbDebugEnabled = false;
+          onValue(debugRef, (snapshot) => {
+            if (!dbDebugEnabled) {
+              dbDebugEnabled = true;
+              return;
+            }
+            unityInstance.SendMessage("vCams", "OnToggleDebug");
+          })
+
           fullscreenButton.onclick = () => {
             unityInstance.SetFullscreen(1);
           };
