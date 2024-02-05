@@ -210,14 +210,17 @@
             //0 = open
             //1 = point
             //2 = closed
-            let handType;
+            let handType = 0;
             switch(filterFaces[0].label) {
               case "open": 
                 handType = 0;
+                break;
               case "point":
                 handType = 1;
+                break;
               case "closed":
                 handType = 2;
+                break;
             }
             myUnityInstance.SendMessage("Hand Cursor", "SetHandType", handType);
 
