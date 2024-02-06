@@ -25,6 +25,7 @@ nameForm.addEventListener("submit", (e) => {
   e.preventDefault();
   nameForm.style.opacity = "0.5";
   nameForm.style.pointerEvents = "none";
+  nameSubmit.style.pointerEvents = "none";
   set(ref(database, "name"), nameInput.value);
   for (let i = 0; i < iconButtons.length; i++) {
     iconButtons[i].style.opacity = "1";
