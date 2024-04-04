@@ -278,9 +278,17 @@
         });
       }
     </script>
-    <cast-media-player></cast-media-player>
     <script>
-      cast.framework.CastReceiverContext.getInstance().start();
+      const context = cast.framework.CastReceiverContext.getInstance();
+      context.addCustomMessageListener(
+        "urn:x-cast:ch.cimnine.cromecast-test.text",
+        function (customEvent) {
+          if (customEvent.data.type == "message") {
+            document.getElementById("message").innerHTML = customEvent.data.text;
+          }
+        }
+      );
+      context.start();
     </script>
   </body>
 </html>
